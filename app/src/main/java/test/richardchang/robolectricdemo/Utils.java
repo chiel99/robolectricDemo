@@ -2,6 +2,8 @@ package test.richardchang.robolectricdemo;
 
 import android.os.Build;
 
+import java.util.UUID;
+
 public final class Utils {
 
     public static boolean isAndroidSupported() {
@@ -9,5 +11,9 @@ public final class Utils {
             return true;
         }
         return false;
+    }
+
+    public static String generateNewUUId() {
+        return UUID.randomUUID().toString();
     }
 }
