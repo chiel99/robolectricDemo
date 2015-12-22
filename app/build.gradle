@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 21
@@ -16,6 +17,34 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+// to run jacoco:
+//     ./gradlew clean jacocoTestReport
+// then open library/build/reports/jacoco/index.html
+/////////////////////////////////////////////////////////////////
+jacoco {
+    // NOTE: Jacoco 0.7.5 is not working for now. Force to use 0.7.1
+    toolVersion = '0.7.1.+'
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebug') {
+    def mainSrc = "src/main/java"
+    // exclude auto-generated classes and tests
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "build/intermediates/classes/debug", excludes: fileFilter)
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "${buildDir}", includes: ['**/*.exec', '**/*.ec'])
+
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.enabled true
+        html.destination "${buildDir}/reports/jacoco"
     }
 }
 
