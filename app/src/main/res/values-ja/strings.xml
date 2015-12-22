@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RobolectricDemo</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="click">Click</string>
+    <string name="hello_world">こんにちは世界!</string>
+    <string name="click">クリック</string>
     <string name="action_settings">Settings</string>
 </resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Robolectric示範</string>
+
+    <string name="hello_world">你好世界!</string>
+    <string name="click">點擊</string>
+    <string name="action_settings">設定</string>
+</resources>
